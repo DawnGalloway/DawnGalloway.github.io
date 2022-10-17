@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Dawn Galloway",
+    "section": "",
+    "text": "senior project\n\n\n\n\n\n\n\n\n\n\n\nOct 14, 2022\n\n\nDawn Galloway\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/first_post/index.html",
+    "href": "posts/first_post/index.html",
+    "title": "Introducing My Senior Project",
+    "section": "",
+    "text": "Some of the packages I plan to use: * Forecast: A well known package for forecasting with time series. See: Automatic Time Series Forecasting: The forecast Package for R * Fable: Essentially version three of the Forecast package, but renamed as it now works with tsibbles. See: Fable * FKF: Fast Kalman Filter. See: The Fast Kalman Filter * KFAS: Exponential Family State Space Models in R. * Benchmark: A package for performance comparisons. See: Microbenchmark"
+  }
+]
