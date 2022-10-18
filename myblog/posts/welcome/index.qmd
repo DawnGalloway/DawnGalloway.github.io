@@ -6,7 +6,7 @@ draft: true
 categories: [senior project]
 
 ---
-
+myblog/posts/welcome
 For my senior project, I will be comparing forecasting methods and speeds in order to take advantage of recent performance improvements in the data warehouse at my place of employment. Though I won't be able to share details, I will post tips and tricks for the packages I will be using and will share useful advice I learn about time series characteristics such as trends and seasonality, statistical concepts like autocorrelation and partial autocorrelation, and methods like ETS, TBATS, and ARIMA. 
 
 Some of the packages I plan to use:

@@ -6,11 +6,14 @@ website:
   title: "A Point in Time"
   navbar:
     right:
-      - about.qmd
+      - icon: linkedin
+        href: https://www.linkedin.com/in/dawnngalloway/
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/DawnGalloway
+      - href: myblog
+        text: Blog
+      - about.qmd
+      
 format:
   html:
     theme: lux

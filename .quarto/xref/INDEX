@@ -13,5 +13,23 @@
   },
   "posts/first_post/index.qmd": {
     "index.html": "3b039b48"
+  },
+  "myblog/about.qmd": {
+    "about.html": "410c1303"
+  },
+  "myblog/index.qmd": {
+    "index.html": "f5851b80"
+  },
+  "myblog/posts/first_post/index.qmd": {
+    "index.html": "47873a88"
+  },
+  "myblog/posts/post-with-code/index.qmd": {
+    "index.html": "0c2104e3"
+  },
+  "myblog/posts/welcome/index.qmd": {
+    "index.html": "815055c4"
+  },
+  "Resume.qmd": {
+    "Resume.html": "8467b6e5"
   }
 }
