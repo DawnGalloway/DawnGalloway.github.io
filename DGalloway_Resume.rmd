@@ -1,0 +1,167 @@
+---
+title: "Lijia Yu's resume"
+author: Lijia Yu
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: false
+# uncomment this line to produce HTML and PDF in RStudio:
+#knit: pagedown::chrome_print
+---
+
+Aside
+================================================================================
+
+
+![Lijia Yu](https://avatars1.githubusercontent.com/u/895125?s=400&v=4){width=80%}
+
+
+Contact Info {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> dawn.n.galloway@gmail.com
+- <i class="fa fa-github"></i> [github.com/DawnGalloway](https://github.com/DawnGalloway)
+- <i class="fa fa-linkedin"></i> [linkedin.com/in/dawnngalloway/](https://www.linkedin.com/in/hathawayj/)
+- <i class="fa fa-phone"></i> +1 206-245-0710
+
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+- Experienced in statistical analysis, statistical learning models, and optimization methods.
+
+- Full experience with next generation sequencing data analysis.
+
+- Highly skilled in R, Bash, Perl, Python, LaTeX
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown).
+
+Last updated on `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+[Dawn Galloway](https://dawngalloway.github.io/) {#title}
+--------------------------------------------------------------------------------
+- [RBDC](http://www.rbdcenter.org/data-analytics/) faculty liaison and sales.
+
+Employment {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+### Digital Engineering & Data Science Intern
+
+*Idaho National Laboratory - Battelle Energy Alliance, LLC*
+
+Idaho Falls, Idaho
+
+March 2022 - Present
+
+•	Created forecast comparisons in R Markdown with the Forecast, Fable, and FKF packages in R which resulted in an order of magnitude improvement in accuracy
+•	Made improvements to GUI using Vue2 and Vueplotly
+•	Created, visualized, and presented Yolov5 experiment project plan
+
+
+### Data Science Project Lead
+
+*Rexburg Business Development Center for Stotz Equipment*
+
+Rexburg, Idaho
+
+January 2022 - April 2022
+
+•	Led team to create R package for client which pulls weather information from Mesonet and crop date from Snowflake to track and predict growing degree units
+•	Troubleshoot project issues, research resources
+•	Assign student consultants tasks based on experience and interest
+
+
+### Department Office Assistant
+
+*Brigham Young Univerity - Idaho*
+
+Rexburg, Id
+
+April 2019 - October 2021
+
+•	Received an award from the Department Chair for efficiency and contributions
+•	Hired, trained, and led 3-5 student office employees per semester
+•	Reduced time on calls by over 50% by redirecting commonly misdirected and generic calls, as well as, increasing visibility of commonly requested information
+
+
+Related Experience and Volunteering {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+### Data Science Society Boot Camp Instructor
+
+*Brigham Young University - Idaho*
+
+Rexburg, Idaho
+
+April 2022 - Present, September 2021 - December 2021
+
+
+### Data Science Consultant
+
+*Rexburg Development Business Center*
+
+Rexburg, Idaho
+
+September 2021 - December 2021
+
+•  Accessed weather API using the RNOA and RNPN packages to assist in predicting harvest dates based on crop and planting date
+• Discovered alternate data source with greater data breadth and predictive data
+• Presented findings to client
+
+
+### Data Science Consultant/Project Manager
+
+*Rexburg Business Development Center*
+
+Rexburg, Idaho
+
+April 2021 - July 2021
+
+• Assigned tasks, led discussions, tracked project progress
+• Pulled machine data from John Deer API to help solve business problem
+
+
+### Data Science Society Officer
+
+*Brigham Young University - Idaho*
+
+April 2021 - July 2021
+
+### Data Science Consultant
+
+*Rexburg Business Development Center*
+
+Rexburg, Idaho
+
+January 2021 - April 2021
+
+• Contributed to Shiny dashboard for STEM occupation webpage for a local college
+• Created sample Shiny dashboard for Project Manager
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+### Brigham Young University - Idaho
+
+B.S. Data Science with Computer Science minor (in progress)
+
+Expected Graduation July 2024
+
+
+### Certificates
+
+Data Science Certificate, April 2021
+
+Programming - Computer Science, December 2018
