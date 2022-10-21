@@ -30,4 +30,4 @@ library(fpp2)
 head(Nile)
 head(goog200)
 ```
-Unlike a data frame or tibble, there isn't a column for times, rather a time series has a starting point, an ending point, and a frequency. Typically, a frequency of 1 is annual, 4 is quarterly, 12 is monthly, and so on. The start year for the Nile data is 1871, while the start for the Google daily closing stock price is arbitrary, representing an undated year.<br>
+Unlike a data frame or tibble, there isn't a column for times, rather a time series has a starting point, an ending point, and a frequency. Typically, a frequency of 1 is annual, 4 is quarterly, 12 is monthly, and so on. The start year for the Nile data is 1871, while the start for the Google daily closing stock price is arbitrary, representing an undated year.<br><br>
