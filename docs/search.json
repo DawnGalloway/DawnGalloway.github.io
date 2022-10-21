@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Dawn Galloway",
     "section": "",
-    "text": "Resume"
+    "text": "LinkedIn"
   },
   {
     "objectID": "about.html",
@@ -32,13 +32,125 @@
     "href": "myblog/index.html",
     "title": "Dawn Galloway",
     "section": "",
-    "text": "senior project\n\n\n\n\n\n\n\n\n\n\n\nOct 14, 2022\n\n\nDawn Galloway\n\n\n\n\n\n\nNo matching items"
+    "text": "senior project\n\n\nForecast\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2022\n\n\nDawn Galloway\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsenior project\n\n\n\n\n\n\n\n\n\n\n\nOct 14, 2022\n\n\nDawn Galloway\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "myblog/posts/first_post/index.html",
     "href": "myblog/posts/first_post/index.html",
-    "title": "Introducing My Senior Project",
+    "title": "Senior Project",
     "section": "",
-    "text": "Some of the packages I plan to use: * Forecast: A well known package for forecasting with time series. See: Automatic Time Series Forecasting: The forecast Package for R * Fable: Essentially version three of the Forecast package, but renamed as it now works with tsibbles. See: Fable * FKF: Fast Kalman Filter. See: The Fast Kalman Filter * KFAS: Exponential Family State Space Models in R. * Benchmark: A package for performance comparisons. See: Microbenchmark"
+    "text": "For my senior project, I will be comparing forecasting methods and speeds in order to take advantage of recent performance improvements in the data warehouse at my place of employment. Though I won’t be able to share details, I will post tips and tricks for the packages I will be using and will share useful advice I learn about time series characteristics such as trends and seasonality, statistical concepts like autocorrelation and partial autocorrelation, and methods like ETS, TBATS, and ARIMA.\nSome of the packages I plan to use:\n\nForecast: A well known package for forecasting with time series. See: Automatic Time Series Forecasting: The forecast Package for R\nFable: Essentially version three of the Forecast package, but renamed as it now works with tsibbles. See: Fable\nFKF: Fast Kalman Filter. See: The Fast Kalman Filter\nKFAS: Exponential Family State Space Models in R.\nBenchmark: A package for performance comparisons. See: Microbenchmark"
+  },
+  {
+    "objectID": "DGalloway_Resume.html",
+    "href": "DGalloway_Resume.html",
+    "title": "Lijia Yu’s resume",
+    "section": "",
+    "text": "Lijia Yu\n\n\n\n\n\n dawn.n.galloway@gmail.com\n github.com/DawnGalloway\n linkedin.com/in/dawnngalloway/\n +1 206-245-0710\n\n\n\n\n\nExperienced in statistical analysis, statistical learning models, and optimization methods.\nFull experience with next generation sequencing data analysis.\nHighly skilled in R, Bash, Perl, Python, LaTeX\n\n\n\n\nThis resume was made with the R package pagedown.\nLast updated on 2022-10-21."
+  },
+  {
+    "objectID": "DGalloway_Resume.html#title",
+    "href": "DGalloway_Resume.html#title",
+    "title": "Lijia Yu’s resume",
+    "section": "Dawn Galloway",
+    "text": "Dawn Galloway\n\nRBDC faculty liaison and sales."
+  },
+  {
+    "objectID": "DGalloway_Resume.html#employment",
+    "href": "DGalloway_Resume.html#employment",
+    "title": "Lijia Yu’s resume",
+    "section": "Employment",
+    "text": "Employment\n\nDigital Engineering & Data Science Intern\nIdaho National Laboratory - Battelle Energy Alliance, LLC\nIdaho Falls, Idaho\nMarch 2022 - Present\n• Created forecast comparisons in R Markdown with the Forecast, Fable, and FKF packages in R which resulted in an order of magnitude improvement in accuracy • Made improvements to GUI using Vue2 and Vueplotly • Created, visualized, and presented Yolov5 experiment project plan\n\n\nData Science Project Lead\nRexburg Business Development Center for Stotz Equipment\nRexburg, Idaho\nJanuary 2022 - April 2022\n• Led team to create R package for client which pulls weather information from Mesonet and crop date from Snowflake to track and predict growing degree units • Troubleshoot project issues, research resources • Assign student consultants tasks based on experience and interest\n\n\nDepartment Office Assistant\nBrigham Young Univerity - Idaho\nRexburg, Id\nApril 2019 - October 2021\n• Received an award from the Department Chair for efficiency and contributions • Hired, trained, and led 3-5 student office employees per semester • Reduced time on calls by over 50% by redirecting commonly misdirected and generic calls, as well as, increasing visibility of commonly requested information"
+  },
+  {
+    "objectID": "DGalloway_Resume.html#related-experience-and-volunteering",
+    "href": "DGalloway_Resume.html#related-experience-and-volunteering",
+    "title": "Lijia Yu’s resume",
+    "section": "Related Experience and Volunteering",
+    "text": "Related Experience and Volunteering\n\nData Science Society Boot Camp Instructor\nBrigham Young University - Idaho\nRexburg, Idaho\nApril 2022 - Present, September 2021 - December 2021\n\n\nData Science Consultant\nRexburg Development Business Center\nRexburg, Idaho\nSeptember 2021 - December 2021\n• Accessed weather API using the RNOA and RNPN packages to assist in predicting harvest dates based on crop and planting date • Discovered alternate data source with greater data breadth and predictive data • Presented findings to client\n\n\nData Science Consultant/Project Manager\nRexburg Business Development Center\nRexburg, Idaho\nApril 2021 - July 2021\n• Assigned tasks, led discussions, tracked project progress • Pulled machine data from John Deer API to help solve business problem\n\n\nData Science Society Officer\nBrigham Young University - Idaho\nApril 2021 - July 2021\n\n\nData Science Consultant\nRexburg Business Development Center\nRexburg, Idaho\nJanuary 2021 - April 2021\n• Contributed to Shiny dashboard for STEM occupation webpage for a local college • Created sample Shiny dashboard for Project Manager"
+  },
+  {
+    "objectID": "DGalloway_Resume.html#education",
+    "href": "DGalloway_Resume.html#education",
+    "title": "Lijia Yu’s resume",
+    "section": "Education",
+    "text": "Education\n\nBrigham Young University - Idaho\nB.S. Data Science with Computer Science minor (in progress)\nExpected Graduation July 2024\n\n\nCertificates\nData Science Certificate, April 2021\nProgramming - Computer Science, December 2018"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Dawn Galloway’s Resume",
+    "section": "",
+    "text": "dawn.n.galloway@gmail.com\n github.com/DawnGalloway\n linkedin.com/in/dawnngalloway/\n +1 206-245-0710\n\n\n\n\n\nHighly skilled in R (18 years) and data science in R (8 years). Skilled in Python (Pandas: 3 years) and Big Data Python (Pyspark: 2 years). Comfortable with SQL, LaTeX, MarkDown, and JavaScript.\nData visualization expertise using ggplot2, Altair, and Tableau\nData science teaching and curriculum development exemplified through five new courses key to BYU-Idaho’s program.\n6+ years supporting varied clients with data science needs through DataThink, Data Driven and the Research and Business Development Center.\nAnalytics and data science team and technical management (VSP & PRIMA).\nSampling methods and designs (VSP)."
+  },
+  {
+    "objectID": "resume.html#title",
+    "href": "resume.html#title",
+    "title": "Dawn Galloway’s Resume",
+    "section": "Dawn Galloway",
+    "text": "Dawn Galloway\n\nRBDC faculty liaison and sales."
+  },
+  {
+    "objectID": "resume.html#employment",
+    "href": "resume.html#employment",
+    "title": "Dawn Galloway’s Resume",
+    "section": "Employment",
+    "text": "Employment\n\nDigital Engineering & Data Science Intern\nIdaho National Laboratory - Battelle Energy Alliance, LLC\nIdaho Falls, Idaho\nMarch 2022 - Present\n• Created forecast comparisons in R Markdown with the Forecast, Fable, and FKF packages in R which resulted in an order of magnitude improvement in accuracy • Made improvements to GUI using Vue2 and Vueplotly • Created, visualized, and presented Yolov5 experiment project plan\n\n\nData Science Project Lead\nRexburg Business Development Center for Stotz Equipment\nRexburg, Idaho\nJanuary 2022 - April 2022\n• Led team to create R package for client which pulls weather information from Mesonet and crop date from Snowflake to track and predict growing degree units • Troubleshoot project issues, research resources • Assign student consultants tasks based on experience and interest\n\n\nDepartment Office Assistant\nBrigham Young Univerity - Idaho\nRexburg, Id\nApril 2019 - October 2021\n• Received an award from the Department Chair for efficiency and contributions • Hired, trained, and led 3-5 student office employees per semester • Reduced time on calls by over 50% by redirecting commonly misdirected and generic calls, as well as, increasing visibility of commonly requested information"
+  },
+  {
+    "objectID": "resume.html#related-experience-and-volunteering",
+    "href": "resume.html#related-experience-and-volunteering",
+    "title": "Dawn Galloway’s Resume",
+    "section": "Related Experience and Volunteering",
+    "text": "Related Experience and Volunteering\n\nData Science Society Boot Camp Instructor\nBrigham Young University - Idaho\nRexburg, Idaho\nApril 2022 - Present, September 2021 - December 2021\n\n\nData Science Consultant\nRexburg Development Business Center\nRexburg, Idaho\nSeptember 2021 - December 2021\n• Accessed weather API using the RNOA and RNPN packages to assist in predicting harvest dates based on crop and planting date • Discovered alternate data source with greater data breadth and predictive data • Presented findings to client\n\n\nData Science Consultant/Project Manager\nRexburg Business Development Center\nRexburg, Idaho\nApril 2021 - July 2021\n• Assigned tasks, led discussions, tracked project progress • Pulled machine data from John Deer API to help solve business problem\n\n\nData Science Society Officer\nBrigham Young University - Idaho\nApril 2021 - July 2021\n\n\nData Science Consultant\nRexburg Business Development Center\nRexburg, Idaho\nJanuary 2021 - April 2021\n• Contributed to Shiny dashboard for STEM occupation webpage for a local college • Created sample Shiny dashboard for Project Manager"
+  },
+  {
+    "objectID": "resume.html#education",
+    "href": "resume.html#education",
+    "title": "Dawn Galloway’s Resume",
+    "section": "Education",
+    "text": "Education\n\nBrigham Young University - Idaho\nB.S. Data Science with Computer Science minor (in progress)\nExpected Graduation July 2024\n\n\nCertificates\nData Science Certificate, April 2021\nProgramming - Computer Science, December 2018"
+  },
+  {
+    "objectID": "Resume.html",
+    "href": "Resume.html",
+    "title": "Lijia Yu’s resume",
+    "section": "",
+    "text": "Lijia Yu\n\n\n\n\n\n dawn.n.galloway@gmail.com\n github.com/DawnGalloway\n linkedin.com/in/dawnngalloway/\n +1 206-245-0710\n\n\n\n\n\nExperienced in statistical analysis, statistical learning models, and optimization methods.\nFull experience with next generation sequencing data analysis.\nHighly skilled in R, Bash, Perl, Python, LaTeX\n\n\n\n\nThis resume was made with the R package pagedown.\nLast updated on 2022-10-21."
+  },
+  {
+    "objectID": "Resume.html#title",
+    "href": "Resume.html#title",
+    "title": "Lijia Yu’s resume",
+    "section": "Dawn Galloway",
+    "text": "Dawn Galloway\n\nRBDC faculty liaison and sales."
+  },
+  {
+    "objectID": "Resume.html#employment",
+    "href": "Resume.html#employment",
+    "title": "Lijia Yu’s resume",
+    "section": "Employment",
+    "text": "Employment\n\nDigital Engineering & Data Science Intern\nIdaho National Laboratory - Battelle Energy Alliance, LLC\nIdaho Falls, Idaho\nMarch 2022 - Present\n• Created forecast comparisons in R Markdown with the Forecast, Fable, and FKF packages in R which resulted in an order of magnitude improvement in accuracy • Made improvements to GUI using Vue2 and Vueplotly • Created, visualized, and presented Yolov5 experiment project plan\n\n\nData Science Project Lead\nRexburg Business Development Center for Stotz Equipment\nRexburg, Idaho\nJanuary 2022 - April 2022\n• Led team to create R package for client which pulls weather information from Mesonet and crop date from Snowflake to track and predict growing degree units • Troubleshoot project issues, research resources • Assign student consultants tasks based on experience and interest\n\n\nDepartment Office Assistant\nBrigham Young Univerity - Idaho\nRexburg, Id\nApril 2019 - October 2021\n• Received an award from the Department Chair for efficiency and contributions • Hired, trained, and led 3-5 student office employees per semester • Reduced time on calls by over 50% by redirecting commonly misdirected and generic calls, as well as, increasing visibility of commonly requested information"
+  },
+  {
+    "objectID": "Resume.html#related-experience-and-volunteering",
+    "href": "Resume.html#related-experience-and-volunteering",
+    "title": "Lijia Yu’s resume",
+    "section": "Related Experience and Volunteering",
+    "text": "Related Experience and Volunteering\n\nData Science Society Boot Camp Instructor\nBrigham Young University - Idaho\nRexburg, Idaho\nApril 2022 - Present, September 2021 - December 2021\n\n\nData Science Consultant\nRexburg Development Business Center\nRexburg, Idaho\nSeptember 2021 - December 2021\n• Accessed weather API using the RNOA and RNPN packages to assist in predicting harvest dates based on crop and planting date • Discovered alternate data source with greater data breadth and predictive data • Presented findings to client\n\n\nData Science Consultant/Project Manager\nRexburg Business Development Center\nRexburg, Idaho\nApril 2021 - July 2021\n• Assigned tasks, led discussions, tracked project progress • Pulled machine data from John Deer API to help solve business problem\n\n\nData Science Society Officer\nBrigham Young University - Idaho\nApril 2021 - July 2021\n\n\nData Science Consultant\nRexburg Business Development Center\nRexburg, Idaho\nJanuary 2021 - April 2021\n• Contributed to Shiny dashboard for STEM occupation webpage for a local college • Created sample Shiny dashboard for Project Manager"
+  },
+  {
+    "objectID": "Resume.html#education",
+    "href": "Resume.html#education",
+    "title": "Lijia Yu’s resume",
+    "section": "Education",
+    "text": "Education\n\nBrigham Young University - Idaho\nB.S. Data Science with Computer Science minor (in progress)\nExpected Graduation July 2024\n\n\nCertificates\nData Science Certificate, April 2021\nProgramming - Computer Science, December 2018"
+  },
+  {
+    "objectID": "myblog/posts/forecast/index.html",
+    "href": "myblog/posts/forecast/index.html",
+    "title": "Forecast Intro",
+    "section": "",
+    "text": "The first thing you need to know about the Forecast package is that there is an incredibly helpful text by Rob J Hyndman and George Athanasopoulos titled Forecasting: Principles and Practice that walks through almost every function with examples. If you would like to use the examples you can download the fpp2 package which includes Forecast and all of the relevant data. I wish every package had such a helpful guide."
   }
 ]

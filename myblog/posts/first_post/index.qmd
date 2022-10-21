@@ -1,16 +1,18 @@
 ---
-title: "Introducing My Senior Project"
+title: "Senior Project"
 author: "Dawn Galloway"
 date: "2022-10-14"
 categories: [senior project]
 ---
 
-myblog/posts/first_post
+### Senior Project
+
 For my senior project, I will be comparing forecasting methods and speeds in order to take advantage of recent performance improvements in the data warehouse at my place of employment. Though I won't be able to share details, I will post tips and tricks for the packages I will be using and will share useful advice I learn about time series characteristics such as trends and seasonality, statistical concepts like autocorrelation and partial autocorrelation, and methods like ETS, TBATS, and ARIMA. 
 
 Some of the packages I plan to use:
-* __Forecast:__ A well known package for forecasting with time series. See: [Automatic Time Series Forecasting: The forecast Package for R](https://www.jstatsoft.org/article/view/v027i03)
-* __Fable:__ Essentially version three of the Forecast package, but renamed as it now works with tsibbles. See: [Fable](https://fable.tidyverts.org/index.html)
-* __FKF:__ Fast Kalman Filter. See: [The Fast Kalman Filter](https://waternumbers.github.io/FKF/index.html)
-* __KFAS:__ [Exponential Family State Space Models in R](https://www.jstatsoft.org/article/view/v078i10).
-* __Benchmark:__ A package for performance comparisons. See: [Microbenchmark](https://github.com/joshuaulrich/microbenchmark/)
+
+* Forecast: A well known package for forecasting with time series. See: [Automatic Time Series Forecasting: The forecast Package for R](https://www.jstatsoft.org/article/view/v027i03)<br>
+* Fable: Essentially version three of the Forecast package, but renamed as it now works with tsibbles. See: [Fable](https://fable.tidyverts.org/index.html)<br>
+* FKF: Fast Kalman Filter. See: [The Fast Kalman Filter](https://waternumbers.github.io/FKF/index.html)
+* KFAS: [Exponential Family State Space Models in R](https://www.jstatsoft.org/article/view/v078i10).
+* Benchmark: A package for performance comparisons. See: [Microbenchmark](https://github.com/joshuaulrich/microbenchmark/)
