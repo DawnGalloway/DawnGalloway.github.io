@@ -1,13 +1,9 @@
 [
   {
-    "listing": "/index.html",
-    "items": []
-  },
-  {
-    "listing": "/myblog/index.html",
+    "listing": "/blog.html",
     "items": [
-      "/myblog/posts/forecast/index.html",
-      "/myblog/posts/first_post/index.html"
+      "/posts/forecast/index.html",
+      "/posts/first_post/index.html"
     ]
   }
 ]

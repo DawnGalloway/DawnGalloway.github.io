@@ -10,7 +10,7 @@ website:
         href: https://www.linkedin.com/in/dawnngalloway/
       - icon: github
         href: https://github.com/DawnGalloway
-      - href: myblog
+      - href: blog.qmd
         text: Blog
       - about.qmd
       

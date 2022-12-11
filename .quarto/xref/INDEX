@@ -40,5 +40,14 @@
   },
   "myblog/posts/forecast/index.qmd": {
     "index.html": "3e750a2a"
+  },
+  "posts/forecast/index.qmd": {
+    "index.html": "f8254958"
+  },
+  "posts/index.qmd": {
+    "index.html": "8fb0662c"
+  },
+  "blog.qmd": {
+    "blog.html": "b437ff3c"
   }
 }
