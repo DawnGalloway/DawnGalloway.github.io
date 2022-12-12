@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 # comment = '#>'
 # results = 'show'
 ```
-### Forecast: The Basics
+### The Magic of Forecast
 
 ##### Resources
 
