@@ -1,10 +1,23 @@
 ---
-title: "Forecast Intro"
+title: "The Magic of Forecast"
 author: "Dawn Galloway"
 date: "2022-10-17"
 categories: [senior project, Forecast]
 ---
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  comment = '',
+  tidy = TRUE,
+  warning = FALSE,
+  fig.show = 'hold'
+)
+# class.source = 'fold-show'
+# cache = TRUE
+# out.width = '50%'
+# echo=-(23:32)
+# comment = '#>'
+# results = 'show'
+```
 ### Forecast: The Basics
 
 ##### Resources
@@ -22,12 +35,85 @@ Hyndman pretty actively answers questions both on his blog and on Cross Validate
 
 ##### General Tips
 
-When they refer to a time series, they are not referring to data with time information. They are referring to a specific data type, the time series. 
+When they refer to a time series, they are not referring to data with time information. They are referring to a specific data type, the time series. Unlike a data frame or tibble, there isn't a column for times, rather a time series has a starting point, an ending point, and a frequency. Typically, a frequency of 1 is annual, 4 is quarterly, 12 is monthly, and so on. 
 
 ```{r warning=FALSE, message=FALSE}
 #install.packages("fpp2")
 library(fpp2)
-head(Nile)
+head(austourists)
 head(goog200)
 ```
-Unlike a data frame or tibble, there isn't a column for times, rather a time series has a starting point, an ending point, and a frequency. Typically, a frequency of 1 is annual, 4 is quarterly, 12 is monthly, and so on. The start year for the Nile data is 1871, while the start for the Google daily closing stock price is arbitrary, representing an undated year.<br><br>
+ 
+The International Tourists to Australia data has quartly data with a start year of 1999, while the start for the Google daily closing stock price is arbitrary, representing an undated year.<br>
+
+
+The forecast package has some functions which are wrappers that, given data and a forecast horizon, call another function followed by a call to forecast(). For example, holt() calls ets() to fit the data and then forecast(). I found it useful for my purposes to call these functions separately as it allowed me greater control.<br><br>
+
+##### Useful Functions
+
+Forecast: Principles and Practices explains the forecasting methods and underlying math well, so I won't duplicate their efforts, but I will share my notes in an attempt to save others time. 
+
+###### From Forecast
+
+The findfrequency function can calculate the frequency in your data. This can be a useful check to ensure that your frequency assumption is correct before working with your data. I worked with data that we did not expect would have a frequency, but findfrequency() found a frequency of five. This caused me to test seasonal as well as non-seasonal forecast methods. The downside of this function is that in data with multiple frequencies, it will only return the most dominant one. In the case of the Australian tourists data, it returns a half-yearly frequency rather than quarterly.<br><br>
+
+```{r}
+findfrequency(austourists)
+```
+<br><br>Similarly, the functions ndiffs() and nsdiffs() will return the number of times the given data needs to be differenced in order to become stationary. The type of unit root test used can be set with the test argument set to "kpss", "adf", or "pp". Remember that the null hypothesis for the KPSS test is the opposite of the hypothesis for the Augmented Dickey-Fuller and Phillips-Perron test.
+
+```{r results = 'hold'}
+googd <- ndiffs(goog200)
+paste(googd ," difference is needed to make the goog200 data stationary.")
+
+austd <- nsdiffs(austourists)
+paste(austd ," difference is needed to make the austourists data stationary.")
+```
+<br><br>Forecast has functions like autoplot(), autolayer(), ggLagplot(), ggHistogram(), ggAcf(), and ggPacf(), which take package models and use ggplot to create appropriate plots. This simplifies the plotting process while allowing you to add to plots in the same way one would with any ggplot. Below I added a title, theme, and color to the line.
+```{r}
+autoplot(austourists) + 
+  ggtitle("International Tourists Visits to Australia in Millions") +
+  geom_line(color=austourists) +
+  theme_classic()
+
+```
+
+
+<br><br> Below I use the Holt method on the data twice, once with the damping argument set to TRUE with phi of 0.9 and once with it set to FALSE. This example is in the text, but with different data ([Fpp2 7.2](https://otexts.com/fpp2/holt.html)). When the damped argument is set to NULL, both options are tried and the best one is returned. 
+
+```{r}
+training <- window(austourists, end=c(2010,4))
+
+fc <- holt(training, h=15)
+fc2 <- holt(training, damped=TRUE, phi = 0.9, h=15)
+autoplot(training) +
+  autolayer(fc, series="Holt's method", PI=FALSE) +
+  autolayer(fc2, series="Damped Holt's method", PI=FALSE) +
+  ggtitle("Forecasts from Holt's method") + xlab("Year") +
+  ylab("Air passengers in Australia (millions)") +
+  guides(colour=guide_legend(title="Forecast")) +
+  theme_classic()
+tail(austourists)
+```
+
+<br><br>With the Forecast package, it's easy to check residuals and accuracy.
+```{r}
+checkresiduals(fc)
+(fc_acc <- accuracy(fc, austourists))
+```
+
+<br><br>Values in these objects can be easily accessed, most with base R's $, though the accuracy values are stored as a matrix and must be referenced accordingly. For example, the test MAPE, `r fc_acc[2,5]`, can be accessed with object_name[2,5].
+
+<br><br>
+
+###### From Other Packages
+
+Forecast imports several packages including stats, tseries, and urca. These also have some useful functions:
+
+*  From urca, the kpss test.
+*  From tseries, the adf.test
+*  From stats, the Box.test as well as start(), end(), time(), cycle(), and deltaat() which are helpful when working with time series because the times don't exist as an accessible column in the data structure.
+<br>
+<br>
+<br>
+<br>

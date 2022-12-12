@@ -9,7 +9,7 @@
 <meta name="author" content="Dawn Galloway">
 <meta name="dcterms.date" content="2022-10-17">
 
-<title>A Point in Time - Forecast Intro</title>
+<title>A Point in Time - The Magic of Forecast</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Forecast Intro</h1>
+      <h1 class="title">The Magic of Forecast</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">senior project</div>
                 <div class="quarto-category">Forecast</div>
@@ -223,17 +223,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="general-tips" class="level5">
 <h5 class="anchored" data-anchor-id="general-tips">General Tips</h5>
-<p>When they refer to a time series, they are not referring to data with time information. They are referring to a specific data type, the time series.</p>
+<p>When they refer to a time series, they are not referring to data with time information. They are referring to a specific data type, the time series. Unlike a data frame or tibble, there isn’t a column for times, rather a time series has a starting point, an ending point, and a frequency. Typically, a frequency of 1 is annual, 4 is quarterly, 12 is monthly, and so on.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("fpp2")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Nile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(austourists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time Series:
-Start = 1871 
-End = 1876 
-Frequency = 1 
-[1] 1120 1160  963 1210 1160 1160</code></pre>
+<pre><code>         Qtr1     Qtr2     Qtr3     Qtr4
+1999 30.05251 19.14850 25.31769 27.59144
+2000 32.07646 23.48796                  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(goog200)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -244,9 +242,105 @@ Frequency = 1
 [1] 392.8300 392.5121 397.3059 398.0113 400.4902 408.0957</code></pre>
 </div>
 </div>
-<p>Unlike a data frame or tibble, there isn’t a column for times, rather a time series has a starting point, an ending point, and a frequency. Typically, a frequency of 1 is annual, 4 is quarterly, 12 is monthly, and so on. The start year for the Nile data is 1871, while the start for the Google daily closing stock price is arbitrary, representing an undated year.<br><br></p>
+<p>The International Tourists to Australia data has quartly data with a start year of 1999, while the start for the Google daily closing stock price is arbitrary, representing an undated year.<br></p>
+<p>The forecast package has some functions which are wrappers that, given data and a forecast horizon, call another function followed by a call to forecast(). For example, holt() calls ets() to fit the data and then forecast(). I found it useful for my purposes to call these functions separately as it allowed me greater control.<br><br></p>
+</section>
+<section id="useful-functions" class="level5">
+<h5 class="anchored" data-anchor-id="useful-functions">Useful Functions</h5>
+<p>Forecast: Principles and Practices explains the forecasting methods and underlying math well, so I won’t duplicate their efforts, but I will share my notes in an attempt to save others time.</p>
+<section id="from-forecast" class="level6">
+<h6 class="anchored" data-anchor-id="from-forecast">From Forecast</h6>
+<p>The findfrequency function can calculate the frequency in your data. This can be a useful check to ensure that your frequency assumption is correct before working with your data. I worked with data that we did not expect would have a frequency, but findfrequency() found a frequency of five. This caused me to test seasonal as well as non-seasonal forecast methods. The downside of this function is that in data with multiple frequencies, it will only return the most dominant one. In the case of the Australian tourists data, it returns a half-yearly frequency rather than quarterly.<br><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">findfrequency</span>(austourists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p><br><br>Similarly, the functions ndiffs() and nsdiffs() will return the number of times the given data needs to be differenced in order to become stationary. The type of unit root test used can be set with the test argument set to “kpss”, “adf”, or “pp”. Remember that the null hypothesis for the KPSS test is the opposite of the hypothesis for the Augmented Dickey-Fuller and Phillips-Perron test.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>googd <span class="ot">&lt;-</span> <span class="fu">ndiffs</span>(goog200)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(googd ,<span class="st">" difference is needed to make the goog200 data stationary."</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>austd <span class="ot">&lt;-</span> <span class="fu">nsdiffs</span>(austourists)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(austd ,<span class="st">" difference is needed to make the austourists data stationary."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1  difference is needed to make the goog200 data stationary."
+[1] "1  difference is needed to make the austourists data stationary."</code></pre>
+</div>
+</div>
+<p><br><br>Forecast has functions like autoplot(), autolayer(), ggLagplot(), ggHistogram(), ggAcf(), and ggPacf(), which take package models and use ggplot to create appropriate plots. This simplifies the plotting process while allowing you to add to plots in the same way one would with any ggplot. Below I added a title, theme, and color to the line.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(austourists) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"International Tourists Visits to Australia in Millions"</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span>austourists) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br><br> Below I use the Holt method on the data twice, once with the damping argument set to TRUE with phi of 0.9 and once with it set to FALSE. This example is in the text, but with different data (<a href="https://otexts.com/fpp2/holt.html">Fpp2 7.2</a>). When the damped argument is set to NULL, both options are tried and the best one is returned.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>training <span class="ot">&lt;-</span> <span class="fu">window</span>(austourists, <span class="at">end=</span><span class="fu">c</span>(<span class="dv">2010</span>,<span class="dv">4</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> <span class="fu">holt</span>(training, <span class="at">h=</span><span class="dv">15</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fc2 <span class="ot">&lt;-</span> <span class="fu">holt</span>(training, <span class="at">damped=</span><span class="cn">TRUE</span>, <span class="at">phi =</span> <span class="fl">0.9</span>, <span class="at">h=</span><span class="dv">15</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(training) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autolayer</span>(fc, <span class="at">series=</span><span class="st">"Holt's method"</span>, <span class="at">PI=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autolayer</span>(fc2, <span class="at">series=</span><span class="st">"Damped Holt's method"</span>, <span class="at">PI=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Forecasts from Holt's method"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Air passengers in Australia (millions)"</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Forecast"</span>)) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(austourists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Qtr1     Qtr2     Qtr3     Qtr4
+2014                   54.76076 59.83447
+2015 73.25703 47.69662 61.09777 66.05576</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br><br>With the Forecast package, it’s easy to check residuals and accuracy.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkresiduals</span>(fc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Ljung-Box test
+
+data:  Residuals from Holt's method
+Q* = 88.192, df = 4, p-value &lt; 2.2e-16
+
+Model df: 4.   Total lags used: 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(fc_acc <span class="ot">&lt;-</span> <span class="fu">accuracy</span>(fc, austourists))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     ME     RMSE      MAE        MPE     MAPE     MASE
+Training set  0.9211998 6.571903 5.097607 -0.6464137 14.95336 1.778292
+Test set     -0.7941557 8.899599 7.198491 -4.4212146 14.65768 2.511182
+                   ACF1 Theil's U
+Training set -0.2619964        NA
+Test set     -0.3637125 0.5573859</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br><br>Values in these objects can be easily accessed, most with base R’s $, though the accuracy values are stored as a matrix and must be referenced accordingly. For example, the test MAPE, 14.6576754, can be accessed with object_name[2,5].</p>
+<p><br><br></p>
+</section>
+<section id="from-other-packages" class="level6">
+<h6 class="anchored" data-anchor-id="from-other-packages">From Other Packages</h6>
+<p>Forecast imports several packages including stats, tseries, and urca. These also have some useful functions:</p>
+<ul>
+<li>From urca, the kpss test.</li>
+<li>From tseries, the adf.test</li>
+<li>From stats, the Box.test as well as start(), end(), time(), cycle(), and deltaat() which are helpful when working with time series because the times don’t exist as an accessible column in the data structure. <br> <br> <br> <br></li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
