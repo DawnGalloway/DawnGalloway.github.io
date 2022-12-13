@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/arima/index.html",
       "/posts/forecast/index.html",
       "/posts/first_post/index.html"
     ]
