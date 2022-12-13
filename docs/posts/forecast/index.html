@@ -257,7 +257,7 @@ Frequency = 1
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
-<p><br><br>Similarly, the functions ndiffs() and nsdiffs() will return the number of times the given data needs to be differenced in order to become stationary. The type of unit root test used can be set with the test argument set to “kpss”, “adf”, or “pp”. Remember that the null hypothesis for the KPSS test is the opposite of the hypothesis for the Augmented Dickey-Fuller and Phillips-Perron test.</p>
+<p><br>Similarly, the functions ndiffs() and nsdiffs() will return the number of times the given data needs to be differenced in order to become stationary. The type of unit root test used can be set with the test argument set to “kpss”, “adf”, or “pp”. Remember that the null hypothesis for the KPSS test is the opposite of the hypothesis for the Augmented Dickey-Fuller and Phillips-Perron test.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>googd <span class="ot">&lt;-</span> <span class="fu">ndiffs</span>(goog200)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(googd ,<span class="st">" difference is needed to make the goog200 data stationary."</span>)</span>
@@ -269,7 +269,7 @@ Frequency = 1
 [1] "1  difference is needed to make the austourists data stationary."</code></pre>
 </div>
 </div>
-<p><br><br>Forecast has functions like autoplot(), autolayer(), ggLagplot(), ggHistogram(), ggAcf(), and ggPacf(), which take package models and use ggplot to create appropriate plots. This simplifies the plotting process while allowing you to add to plots in the same way one would with any ggplot. Below I added a title, theme, and color to the line.</p>
+<p><br>Forecast has functions like autoplot(), autolayer(), ggLagplot(), ggHistogram(), ggAcf(), and ggPacf(), which take package models and use ggplot to create appropriate plots. This simplifies the plotting process while allowing you to add to plots in the same way one would with any ggplot. Below I added a title, theme, and color to the line.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(austourists) <span class="sc">+</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"International Tourists Visits to Australia in Millions"</span>) <span class="sc">+</span></span>
@@ -279,7 +279,7 @@ Frequency = 1
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br><br> Below I use the Holt method on the data twice, once with the damping argument set to TRUE with phi of 0.9 and once with it set to FALSE. This example is in the text, but with different data (<a href="https://otexts.com/fpp2/holt.html">Fpp2 7.2</a>). When the damped argument is set to NULL, both options are tried and the best one is returned.</p>
+<p><br> Below I use the Holt method on the data twice, once with the damping argument set to TRUE with phi of 0.9 and once with it set to FALSE. This example is in the text, but with different data (<a href="https://otexts.com/fpp2/holt.html">Fpp2 7.2</a>). When the damped argument is set to NULL, both options are tried and the best one is returned.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>training <span class="ot">&lt;-</span> <span class="fu">window</span>(austourists, <span class="at">end=</span><span class="fu">c</span>(<span class="dv">2010</span>,<span class="dv">4</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -302,7 +302,7 @@ Frequency = 1
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br><br>With the Forecast package, it’s easy to check residuals and accuracy.</p>
+<p><br>With the Forecast package, it’s easy to check residuals and accuracy.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkresiduals</span>(fc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -327,7 +327,7 @@ Test set     -0.3637125 0.5573859</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br><br>Values in these objects can be easily accessed, most with base R’s $, though the accuracy values are stored as a matrix and must be referenced accordingly. For example, the test MAPE, 14.6576754, can be accessed with object_name[2,5].</p>
+<p><br>Values in these objects can be easily accessed, most with base R’s $, though the accuracy values are stored as a matrix and must be referenced accordingly. For example, the test MAPE, 14.6576754, can be accessed with object_name[2,5].</p>
 <p><br><br></p>
 </section>
 <section id="from-other-packages" class="level6">

@@ -60,7 +60,7 @@ The findfrequency function can calculate the frequency in your data. This can be
 ```{r}
 findfrequency(austourists)
 ```
-<br><br>Similarly, the functions ndiffs() and nsdiffs() will return the number of times the given data needs to be differenced in order to become stationary. The type of unit root test used can be set with the test argument set to "kpss", "adf", or "pp". Remember that the null hypothesis for the KPSS test is the opposite of the hypothesis for the Augmented Dickey-Fuller and Phillips-Perron test.
+<br>Similarly, the functions ndiffs() and nsdiffs() will return the number of times the given data needs to be differenced in order to become stationary. The type of unit root test used can be set with the test argument set to "kpss", "adf", or "pp". Remember that the null hypothesis for the KPSS test is the opposite of the hypothesis for the Augmented Dickey-Fuller and Phillips-Perron test.
 
 ```{r results = 'hold'}
 googd <- ndiffs(goog200)
@@ -69,7 +69,7 @@ paste(googd ," difference is needed to make the goog200 data stationary.")
 austd <- nsdiffs(austourists)
 paste(austd ," difference is needed to make the austourists data stationary.")
 ```
-<br><br>Forecast has functions like autoplot(), autolayer(), ggLagplot(), ggHistogram(), ggAcf(), and ggPacf(), which take package models and use ggplot to create appropriate plots. This simplifies the plotting process while allowing you to add to plots in the same way one would with any ggplot. Below I added a title, theme, and color to the line.
+<br>Forecast has functions like autoplot(), autolayer(), ggLagplot(), ggHistogram(), ggAcf(), and ggPacf(), which take package models and use ggplot to create appropriate plots. This simplifies the plotting process while allowing you to add to plots in the same way one would with any ggplot. Below I added a title, theme, and color to the line.
 ```{r}
 autoplot(austourists) + 
   ggtitle("International Tourists Visits to Australia in Millions") +
@@ -78,8 +78,7 @@ autoplot(austourists) +
 
 ```
 
-
-<br><br> Below I use the Holt method on the data twice, once with the damping argument set to TRUE with phi of 0.9 and once with it set to FALSE. This example is in the text, but with different data ([Fpp2 7.2](https://otexts.com/fpp2/holt.html)). When the damped argument is set to NULL, both options are tried and the best one is returned. 
+<br> Below I use the Holt method on the data twice, once with the damping argument set to TRUE with phi of 0.9 and once with it set to FALSE. This example is in the text, but with different data ([Fpp2 7.2](https://otexts.com/fpp2/holt.html)). When the damped argument is set to NULL, both options are tried and the best one is returned. 
 
 ```{r}
 training <- window(austourists, end=c(2010,4))
@@ -96,13 +95,13 @@ autoplot(training) +
 tail(austourists)
 ```
 
-<br><br>With the Forecast package, it's easy to check residuals and accuracy.
+<br>With the Forecast package, it's easy to check residuals and accuracy.
 ```{r}
 checkresiduals(fc)
 (fc_acc <- accuracy(fc, austourists))
 ```
 
-<br><br>Values in these objects can be easily accessed, most with base R's $, though the accuracy values are stored as a matrix and must be referenced accordingly. For example, the test MAPE, `r fc_acc[2,5]`, can be accessed with object_name[2,5].
+<br>Values in these objects can be easily accessed, most with base R's $, though the accuracy values are stored as a matrix and must be referenced accordingly. For example, the test MAPE, `r fc_acc[2,5]`, can be accessed with object_name[2,5].
 
 <br><br>
 

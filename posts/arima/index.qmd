@@ -1,0 +1,120 @@
+---
+title: "Working with Forecast's Arima"
+author: "Dawn Galloway"
+date: "2022-11-07"
+categories: [senior project, Forecast, Arima]
+format: html
+knitr:
+  opts_chunk:
+    comment: ''
+---
+
+
+### Working with Forecast's Arima
+
+ARIMA or AutoRegressive Integrated Moving Average models have three parts: autoregression AR(p), integration I(d), and moving average MA(q) and are often written ARIMA(p,d,q) ([FPP2 8.1](https://otexts.com/fpp2/stationarity.html)). Seasonal data may have seasonal autoregression, integration, and moving averages as well. The seasonal component is written with capital letters and followed by the number of yearly seasonal observations. ARIMA(p,d,q)(P,D,Q)[m] ([FPP2 8.9](https://otexts.com/fpp2/seasonal-arima.html)). 
+
+##### Auto.arima
+
+To have Forecast calculate the appropriate ARIMA model for your data, simply pass the data to auto.arima. 
+
+```{r}
+library(fpp2)
+
+# create training set
+training <- window(austourists, end=c(2010,4))
+
+# plot the training set
+autoplot(training)
+
+# fit the model and forecast
+(tr_fit <- auto.arima(training))
+tr_fc <- forecast(tr_fit, h=20)
+```
+<br>Forecast quickly calculates an ARIMA(1,0,0)(1,1,0)[4] for the International Tourists to Australia data and forecasts 20 quarters ahead. However, you may not agree with the number of differences auto.arima uses to make the data stationary, so it's a good idea to examine the ACF & PACF to verify auto.arima's suggestion. If you disagree with auto.arima's recommendation, you can use the d argument to force auto.arima to use the desired number of differences. You can also specify the order (non-seasonal components), seasonal (seasonal components), and include a mean or drift. Be aware that auto.arima will ignore a drift argument if the differencing is greater than 1.
+
+```{r}
+# test the forecast
+checkresiduals(tr_fc)
+(tr_acc <- accuracy(tr_fc, austourists))
+```
+
+
+The accuracy function can pull the test data from the full set and return multiple measures. <br>
+
+
+##### Arima
+
+If auto.arima returns a model with residuals that indicate room for a better model or you prefer, the Arima function can be used. Note: Stats has the arima() function while Forecast has Arima(). The best references I have found for estimating an ARIMA model are:
+
+*  Esimation and Order Selection ([FPP2 8.6](https://otexts.com/fpp2/arima-estimation.html))
+*  Penn State's Identifying and Esimating ARIMA models from Stats 510 ([Lesson 3](online.stat.psu.edu/stat510/lesson/3/3.1)) Their Stats 510 course is an excellent reference for understanding many forecasting methods.
+
+###### Observe the Data
+
+The first step in estimating an arima model is to check to see whether the data has a trend or increasing level. In the plot above we see an upward trend. In the ACF below, the training data has large positive seasonal lags which slowly decrease toward zero. We can use ndiffs() or nsdiffs() to determine the number of first order differences needed to make the data stationary. 
+
+```{r}
+#| fig.show: hold
+#| out-width: 50%
+#| layout-nrow: 3
+# Check the ACF & PACF for stationarity
+ggAcf(training)
+ggPacf(training)
+
+# determine the number of seasonal and non-seasonal differences needed
+nsdiffs(training)
+sd_training <- diff(training, lag=4, differences=1)
+ndiffs(sd_training)
+
+# Recheck the ACF & PACF
+ggAcf(sd_training)
+ggPacf(sd_training)
+
+```
+<br>When we recheck the ACF & PACF on the seasonally differenced training data (adove), we can see that the large seasonal lags have been removed and the data appears stationary.
+
+###### Transformations
+
+Another feature of the tourist data is increasing quarterly variation, so we will transform the data using a Box-Cox transformation. More information on transformations is available in the Transformations and Adjustments chapter ([FPP@ 3.2](https://otexts.com/fpp2/transformations.html))
+
+
+```{r}
+#| fig.show: hold
+#| out-width: 50%
+#| layout-nrow: 1
+tr_lam <- BoxCox.lambda(training)
+autoplot(training)
+autoplot(BoxCox(training,tr_lam))
+```
+
+
+Now we use the ACF & PACF of the seasonally differenced data to estimate the terms for the ARIMA.
+
+```{r}
+#| fig.show: hold
+#| out-width: 50%
+#| layout-nrow: 1
+ggAcf(sd_training)
+ggPacf(sd_training)
+```
+First, we examine the seasonal lags (every fourth lag since the data is quarterly). In both the ACF & PACF the first quarterly lag is outside the line of significance. However, in the PACF the seasonal lags decay (taper off). This suggests a seasonal MA compenent of 1. Next, we examine the non-seasonal lags. In the ACF, the non-seasonal lags almost taper, but in the PACF, the non-seasonal lags almost cut off. 
+
+This suggests a non-seasonal ARIMA(1,0,0) and a seasonal ARIMA(0,1,1). Remember, the seasonal difference of one was previously determined.
+
+```{r}
+#| fig.show: hold
+# fit then forecast
+(tr_ar <- Arima(training, order=c(1,0,0), seasonal=c(1,1,0), lambda = tr_lam))
+tr_ar_fc <- forecast(tr_ar, h=20)
+
+# Check the forecast
+checkresiduals(tr_ar_fc)
+(tr_ar_acc <- accuracy(tr_ar_fc, austourists))
+```
+<br>In this example, manually selecting the values actually decreases the accuracy of the ARIMA, possibly because this method is less reliable when the first lags of both the ACF & PACF are positive ([FPP2 8.5](https://otexts.com/fpp2/non-seasonal-arima.html)). However, with the data I was using, manually estimating the model did result in better accuracy measures.
+<br>
+<br>
+<br>
+<br>
+
