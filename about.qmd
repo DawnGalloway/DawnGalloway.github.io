@@ -1,8 +1,8 @@
 ---
 title: "About"
-image: profile.jpg
+image: Dawn2.jpg
 about:
   template: jolla
 ---
 
-About this blog
+I am an aspiring data scientist, interested in using my skills to do research and development. I live in Rexburg, Idaho with my three children and expect to graduate in July of 2024.

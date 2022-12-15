@@ -2,7 +2,7 @@
 title: "Senior Project"
 author: "Dawn Galloway"
 date: "2022-10-14"
-categories: [senior project]
+categories: [Senior Project]
 ---
 
 ### Senior Project

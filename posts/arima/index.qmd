@@ -2,13 +2,13 @@
 title: "Working with Forecast's Arima"
 author: "Dawn Galloway"
 date: "2022-11-07"
-categories: [senior project, Forecast, Arima]
+categories: [Senior Project, Forecast, Arima]
 format: html
 knitr:
   opts_chunk:
     comment: ''
 ---
-
+ 
 
 ### Working with Forecast's Arima
 
@@ -16,9 +16,11 @@ ARIMA or AutoRegressive Integrated Moving Average models have three parts: autor
 
 ##### Auto.arima
 
-To have Forecast calculate the appropriate ARIMA model for your data, simply pass the data to auto.arima. 
+Subset the data to create a training set using window(). To have Forecast calculate the appropriate ARIMA model for your data, simply pass the data to auto.arima. 
 
 ```{r}
+#| warning: false
+#| message: false
 library(fpp2)
 
 # create training set
@@ -76,7 +78,7 @@ ggPacf(sd_training)
 
 ###### Transformations
 
-Another feature of the tourist data is increasing quarterly variation, so we will transform the data using a Box-Cox transformation. More information on transformations is available in the Transformations and Adjustments chapter ([FPP@ 3.2](https://otexts.com/fpp2/transformations.html))
+Another feature of the tourist data is increasing quarterly variation, so we will transform the data using a Box-Cox transformation. More information on transformations is available in the Transformations and Adjustments chapter ([FPP2 3.2](https://otexts.com/fpp2/transformations.html))
 
 
 ```{r}

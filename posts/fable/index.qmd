@@ -1,0 +1,112 @@
+---
+title: "A Fable for the Future"
+author: "Dawn Galloway"
+date: "2022-11-21"
+categories: [Senior Project, Fable]
+---
+
+### A Fable for the Future
+
+##### Forecast version 3.0
+
+The Fable package is essentially version 3.0 of Forecast. However, the name change reflects some considerable updates. <br>
+
+Rather than using time series, Fable uses a data type called the tsibble, or time series tibble. In theory, this is similar to a tibble, a data type most people work with on a regular basis and should work similarly. This also means data can have a specific column for time stamps which can be helpful if the times are slightly irregular. In addition to changing the supported data type, Fable has also changed the way arguments are passed to functions in a way that is more consistent with models in the stats package. Most data scientists that use R have fit linear models using a y ~ x syntax, so this should feel familiar for those who start predicting with Fable. However, it may be confusing for those already familiar with Forecast.
+
+Useful references:
+
+*  [Forecasting: Principles and Practice (3rd Ed)](https://otexts.com/fpp3/)
+*  [Fable](https://fable.tidyverts.org/)
+*  [Fable Vignette](https://cloud.r-project.org/web/packages/fable/vignettes/fable.html)
+*  [Fable Manual](https://cloud.r-project.org/web/packages/fable/fable.pdf)
+*  [Hyndsight](https://robjhyndman.com/hyndsight/), Rob J. Hyndman's blog
+*  [Cross Validated](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiQ7oL92fH6AhUYAjQIHaC9BpAQFnoECAwQAw&url=https%3A%2F%2Fwww.kdnuggets.com%2F2011%2F10%2Fcross-validated-statistical-stackexchange.html&usg=AOvVaw3vmgU60Gt_FJswas7T-B_R), Stack Exchange's Q&A for Statistical Topics
+
+
+In reality, even though tsibbles work with dplyr, I found there was a significant learning curve to this data type even when familiar with tibbles. My intention was to convert the time series used for my last post on Forecast's arima (International Tourists to Australia), to a tsibble and use it here. However, though the data displayed as a tsibble, the model function did not recognize it as a tsibble no matter how I tried. Instead, we will use the data and examples from the text [FPP3 9.7](https://otexts.com/fpp3/non-seasonal-arima.html) to illustrate some of the differences and similarities between Forecast and Fable. 
+
+```{r}
+#| message: false
+#| warning: false
+# install.packages('fpp3')
+#install.packages('fable')
+library(fable)
+library(tsibble)
+library(tsbox)
+library(fpp3)
+library(dplyr)
+
+global_economy %>%
+  filter(Code == "EGY") %>%
+  autoplot(Exports) +
+  labs(y = "% of GDP", title = "Egyptian exports") +
+  theme_light()
+```
+<br>Above is a plot of exports from Egypt, from 1960 to 2017, as a percentage of GDP. Notice, Fable does have an autoplot function.
+
+##### ARIMA
+
+<br>Fable can estimate an ARIMA model much like auto.arima from the Forecast package, but it is combined with the ability to specify the ARIMA model into one function, ARIMA(). If data is passed in without specifying the model's order, ARIMA() will select the best model.
+
+```{r}
+fit <- global_economy %>%
+  filter(Code == "EGY") %>%
+  model(ARIMA(Exports))
+report(fit)
+```
+
+##### Mables
+
+One unique feature of Fable is that more than one model can be evaluated at a time. Fable will return a Mable or model table when more than one model is passed into the model function.
+
+```{r}
+#| warning: false
+#| message: false
+fit <- global_economy %>%
+  filter(Code == "EGY") %>%
+  model(
+    Ets = ETS(Exports),
+    Auto = ARIMA(Exports),
+    Arima400 = ARIMA(Exports ~ pdq(4,0,0)))
+report(fit)
+```
+
+Mables make it easy to compare the performance of different models. Here the ARIMA model chosen by Fable has the best AICc.
+
+##### Accuracy
+
+We can then pass the mable to accuracy() and easily compare measures.
+
+```{r}
+
+fit %>%
+  accuracy() %>%
+  arrange(RMSE)
+```
+
+While the AICc favored Fable's ARIMA selection, the RMSE is better for the ARIMA which we specified.
+
+##### Forecast
+
+Fable allows us to pass a forecast horizon for each model using natural language.
+
+````{r}
+Egy_exp <- global_economy %>%
+  filter(Code == "EGY")
+
+fc <- fit %>%
+  forecast(h = "5 years")
+fc %>%
+  autoplot(Egy_exp)
+```
+
+##### Summary
+
+While much of the functionality is the same there are many things that are subtly different from Forecast. Some related to using tsibbles like needing to use TSibble's difference() rather than Forecast's diff() to make data stationary. Others are related to the package itself, like syntax and function name changes. For example, Forecast used summary() rather than report() to print an overview of a model or mable's fit. While not significant, the number of subtle differences, can make it frustrating to work with Fable after becoming familiar with Forecast.
+
+A few important differences should be mentioned:
+<br> Both packages use state space equations on the back end. However, Forecast uses more C++ and is significantly faster at most tasks. However, if you want access to the hidden state's values, you will need to use Fable.
+<br>
+<br>
+<br>
+<br>

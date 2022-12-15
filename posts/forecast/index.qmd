@@ -2,33 +2,21 @@
 title: "The Magic of Forecast"
 author: "Dawn Galloway"
 date: "2022-10-17"
-categories: [senior project, Forecast]
+categories: [Senior Project, Forecast]
 ---
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  comment = '',
-  tidy = TRUE,
-  warning = FALSE,
-  fig.show = 'hold'
-)
-# class.source = 'fold-show'
-# cache = TRUE
-# out.width = '50%'
-# echo=-(23:32)
-# comment = '#>'
-# results = 'show'
-```
+
 ### The Magic of Forecast
 
 ##### Resources
 
-The first thing you need to know about the Forecast package is that there is an incredibly helpful text by Rob J Hyndman and George Athanasopoulos titled [Forecasting: Principles and Practice](https://otexts.com/fpp2/) which explains relevant concepts and walks through almost every function with examples. If you would like to work through their examples, you can download the fpp2 package which includes Forecast and all of the data. I wish every package had such a helpful guide.<br>
+The first thing you need to know about the Forecast package is that there is an incredibly helpful text by Rob J Hyndman and George Athanasopoulos titled [Forecasting: Principles and Practice (2nd Ed)](https://otexts.com/fpp2/) which explains relevant concepts and walks through almost every function with examples. If you would like to work through their examples, you can download the fpp2 package which includes Forecast and all of the data. I wish every package had such a helpful guide.<br>
 
 Some other useful resources:
 
-* The Forecast package manual and vignette is available [here](https://cran.r-project.org/web/packages/forecast/index.html)
-* [Hyndsight](https://robjhyndman.com/hyndsight/), Rob J. Hyndman's blog
-* [Cross Validated](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiQ7oL92fH6AhUYAjQIHaC9BpAQFnoECAwQAw&url=https%3A%2F%2Fwww.kdnuggets.com%2F2011%2F10%2Fcross-validated-statistical-stackexchange.html&usg=AOvVaw3vmgU60Gt_FJswas7T-B_R), Stack Exchange's Q&A for Statistical Topics
+*  [Forecast package manual](https://cran.r-project.org/web/packages/forecast/index.html)
+*  [Forecast Vignette](https://cran.r-project.org/web/packages/forecast/vignettes/JSS2008.pdf)
+*  [Hyndsight](https://robjhyndman.com/hyndsight/), Rob J. Hyndman's blog
+*  [Cross Validated](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiQ7oL92fH6AhUYAjQIHaC9BpAQFnoECAwQAw&url=https%3A%2F%2Fwww.kdnuggets.com%2F2011%2F10%2Fcross-validated-statistical-stackexchange.html&usg=AOvVaw3vmgU60Gt_FJswas7T-B_R), Stack Exchange's Q&A for Statistical Topics
 
 Hyndman pretty actively answers questions both on his blog and on Cross Validated, so I suggest reading the comments if your question isn't answered in a blog entry.<br><br>
 
@@ -37,8 +25,9 @@ Hyndman pretty actively answers questions both on his blog and on Cross Validate
 
 When they refer to a time series, they are not referring to data with time information. They are referring to a specific data type, the time series. Unlike a data frame or tibble, there isn't a column for times, rather a time series has a starting point, an ending point, and a frequency. Typically, a frequency of 1 is annual, 4 is quarterly, 12 is monthly, and so on. 
 
-```{r warning=FALSE, message=FALSE}
-#install.packages("fpp2")
+```{r}
+#| warning: false
+#| message: false
 library(fpp2)
 head(austourists)
 head(goog200)
@@ -62,14 +51,13 @@ findfrequency(austourists)
 ```
 <br>Similarly, the functions ndiffs() and nsdiffs() will return the number of times the given data needs to be differenced in order to become stationary. The type of unit root test used can be set with the test argument set to "kpss", "adf", or "pp". Remember that the null hypothesis for the KPSS test is the opposite of the hypothesis for the Augmented Dickey-Fuller and Phillips-Perron test.
 
-```{r results = 'hold'}
-googd <- ndiffs(goog200)
-paste(googd ," difference is needed to make the goog200 data stationary.")
-
+```{r}
+#| fig.show: hold
 austd <- nsdiffs(austourists)
 paste(austd ," difference is needed to make the austourists data stationary.")
 ```
 <br>Forecast has functions like autoplot(), autolayer(), ggLagplot(), ggHistogram(), ggAcf(), and ggPacf(), which take package models and use ggplot to create appropriate plots. This simplifies the plotting process while allowing you to add to plots in the same way one would with any ggplot. Below I added a title, theme, and color to the line.
+
 ```{r}
 autoplot(austourists) + 
   ggtitle("International Tourists Visits to Australia in Millions") +
@@ -92,15 +80,17 @@ autoplot(training) +
   ylab("Air passengers in Australia (millions)") +
   guides(colour=guide_legend(title="Forecast")) +
   theme_classic()
-tail(austourists)
 ```
 
-<br>With the Forecast package, it's easy to check residuals and accuracy.
+<br>The checkresiduals function displays several plots and the results of the Ljung-Box test.
 ```{r}
 checkresiduals(fc)
-(fc_acc <- accuracy(fc, austourists))
 ```
 
+<br>The accuracy method can take the entire data set and compare the portion set aside for testing to a forecast.
+```{r}
+(fc_acc <- accuracy(fc, austourists))
+```
 <br>Values in these objects can be easily accessed, most with base R's $, though the accuracy values are stored as a matrix and must be referenced accordingly. For example, the test MAPE, `r fc_acc[2,5]`, can be accessed with object_name[2,5].
 
 <br><br>

@@ -1,6 +1,6 @@
 ---
 title: "Dawn Galloway"
-image: profile.jpg
+image: Dawn2.jpg
 about:
   template: jolla
 ---

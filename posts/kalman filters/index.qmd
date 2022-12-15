@@ -1,0 +1,46 @@
+---
+title: "Abandon Hope All Ye Who Enter Here - Kalman Filters"
+author: "Dawn Galloway"
+date: "2022-12-05"
+categories: [Senior Project, Kalman Filters, DLM, KFAS, FKF]
+---
+
+### Abandon Hope All Ye Who Enter Here - Kalman Filters
+
+##### Reality Check
+
+The title of this post probably seems overly dramatic, but I assure you, it isn't. Understanding how Kalman filters work requires a decent understanding of linear algebra and using Kalman filter packages requires a crystal ball and an abundance of patience. For previous posts, I have included lists of helpful resources. Here I will include links with a quote from some of the posts, so you can comprehend what you are getting into.<br>
+
+[Bilgin's Kalman Filter for Dummies](http://bilgin.esme.org/BitsAndBytes/KalmanFilterforDummies):<br>
+"When I started doing my homework for Optimal Filtering for Signal Processing class, I said to myself :*"How hard can it be?". Soon I realized that it was a fatal mistake.*<br>
+
+*The whole thing was like a nightmare. Nothing made sense.* The equations were composed of some ridiculously complex superscripted and subscripted variables combined with transposed matrices and untransposed some other stuff, which are totally unknowable to most of us."<br>
+<br>
+[Smoothing a Time Series with a Kalman Filter in R](http://bearcave.com/finance/random_r_hacks/kalman_smooth.html):<br>
+"Unfortunately, I have had a hard time understanding the literature I've been able to find on the Kalman filter. *After I completed a graduate level class on Advanced Statistics*, where we covered Least Squares in great depth, I thought that I'd have another run at the Kalman filter (I read somewhere that the Kalman filter evolved from Least Squares). *Unfortunately, my new knowledge was still not that helpful in understanding the material on the Kalman filter.*<br>
+<br>
+One of the great things about R is that you don't always have to understand how the R function is implemented. For example, the fact that a Least Squares function might be implemented with QR decomposition does concern the user of the R lm() function. <br>
+<br>
+As it turns out, however, *the R documentation for the Kalman filter is not terribly easy to understand either.*"<br>
+<br>
+[Derive Yourself a Kalman Filter](https://ngr.yt/blog/kalman/):<br>
+"If you have already tried to understand Kalman filters, *you may very likely have found yourself dumbfounded*, as I was when I did."<br>
+<br>
+[Len Kiefer's Kalman Filter for a dynamic linear model in R](http://lenkiefer.com/2018/06/10/kalman-filter-for-a-dynamic-linear-model-in-r/):<br>
+"*Part of the fun of working with the Kalman Filter is that it’s ubiquitous and has spread across multiple disciplines so the notation is often slightly different.*"<br>
+<br>
+[How a Kalman filter works, in pictures](https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/)<br>
+[Kalman Filter Explained Simply](https://thekalmanfilter.com/kalman-filter-explained-simply/)<br>
+[The Mathematics of the Kalman Filter](https://www.alanzucconi.com/2022/07/24/kalman-gain/)<br>
+[Kalman Filter Tutorial](https://www.kalmanfilter.net/default.aspx)<br>
+<br>
+
+In other words, Kalman Filters aren't for the faint of heart. In addition to having complex formulas, each industry uses different notation; it can be hard to synthesize information from multiple sources.<br>
+<br>
+While the links above may help you begin to grasp the conceps, they are little help in using R Kalman filter packages. Most packages are poorly written and not-supported. When I first started to experiment with Kalman Filters, I began with the DLM package because most sources said it had the best documentation. Unfortunately, best is a relative term. It was difficult to understand all of the variables and data types that needed to be passed into the functions. I took a break to improve my understanding of arima models, so I could create a filter for an arima. When I returned, the DLM package had been removed from Cran. Several other packages I had seen referenced were also no longer available, so I had to relegate myself to experimenting with FKF and KFAS. While both use kalman filters, the data types for the various arguments were different from each other and both required a decent understand of linear algebra to properly construct a model.
+<br>
+<br>
+<br>
+<br>
+
+

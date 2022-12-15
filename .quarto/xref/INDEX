@@ -52,5 +52,14 @@
   },
   "posts/arima/index.qmd": {
     "index.html": "15c4f41f"
+  },
+  "posts/fable/index.qmd": {
+    "index.html": "1407c926"
+  },
+  "posts/kalman filters/index.qmd": {
+    "index.html": "68480dd6"
+  },
+  "Resume.rmd": {
+    "Resume.html": "d6f238a1"
   }
 }

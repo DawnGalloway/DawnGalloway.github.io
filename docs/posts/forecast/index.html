@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="quarto-title column-body">
       <h1 class="title">The Magic of Forecast</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">senior project</div>
+                <div class="quarto-category">Senior Project</div>
                 <div class="quarto-category">Forecast</div>
               </div>
                   </div>
@@ -212,10 +212,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="the-magic-of-forecast">The Magic of Forecast</h3>
 <section id="resources" class="level5">
 <h5 class="anchored" data-anchor-id="resources">Resources</h5>
-<p>The first thing you need to know about the Forecast package is that there is an incredibly helpful text by Rob J Hyndman and George Athanasopoulos titled <a href="https://otexts.com/fpp2/">Forecasting: Principles and Practice</a> which explains relevant concepts and walks through almost every function with examples. If you would like to work through their examples, you can download the fpp2 package which includes Forecast and all of the data. I wish every package had such a helpful guide.<br></p>
+<p>The first thing you need to know about the Forecast package is that there is an incredibly helpful text by Rob J Hyndman and George Athanasopoulos titled <a href="https://otexts.com/fpp2/">Forecasting: Principles and Practice (2nd Ed)</a> which explains relevant concepts and walks through almost every function with examples. If you would like to work through their examples, you can download the fpp2 package which includes Forecast and all of the data. I wish every package had such a helpful guide.<br></p>
 <p>Some other useful resources:</p>
 <ul>
-<li>The Forecast package manual and vignette is available <a href="https://cran.r-project.org/web/packages/forecast/index.html">here</a></li>
+<li><a href="https://cran.r-project.org/web/packages/forecast/index.html">Forecast package manual</a></li>
+<li><a href="https://cran.r-project.org/web/packages/forecast/vignettes/JSS2008.pdf">Forecast Vignette</a></li>
 <li><a href="https://robjhyndman.com/hyndsight/">Hyndsight</a>, Rob J. Hyndman’s blog</li>
 <li><a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwiQ7oL92fH6AhUYAjQIHaC9BpAQFnoECAwQAw&amp;url=https%3A%2F%2Fwww.kdnuggets.com%2F2011%2F10%2Fcross-validated-statistical-stackexchange.html&amp;usg=AOvVaw3vmgU60Gt_FJswas7T-B_R">Cross Validated</a>, Stack Exchange’s Q&amp;A for Statistical Topics</li>
 </ul>
@@ -225,9 +226,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5 class="anchored" data-anchor-id="general-tips">General Tips</h5>
 <p>When they refer to a time series, they are not referring to data with time information. They are referring to a specific data type, the time series. Unlike a data frame or tibble, there isn’t a column for times, rather a time series has a starting point, an ending point, and a frequency. Typically, a frequency of 1 is annual, 4 is quarterly, 12 is monthly, and so on.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("fpp2")</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(austourists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(austourists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         Qtr1     Qtr2     Qtr3     Qtr4
 1999 30.05251 19.14850 25.31769 27.59144
@@ -259,14 +259,10 @@ Frequency = 1
 </div>
 <p><br>Similarly, the functions ndiffs() and nsdiffs() will return the number of times the given data needs to be differenced in order to become stationary. The type of unit root test used can be set with the test argument set to “kpss”, “adf”, or “pp”. Remember that the null hypothesis for the KPSS test is the opposite of the hypothesis for the Augmented Dickey-Fuller and Phillips-Perron test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>googd <span class="ot">&lt;-</span> <span class="fu">ndiffs</span>(goog200)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(googd ,<span class="st">" difference is needed to make the goog200 data stationary."</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>austd <span class="ot">&lt;-</span> <span class="fu">nsdiffs</span>(austourists)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(austd ,<span class="st">" difference is needed to make the austourists data stationary."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>austd <span class="ot">&lt;-</span> <span class="fu">nsdiffs</span>(austourists)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(austd ,<span class="st">" difference is needed to make the austourists data stationary."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "1  difference is needed to make the goog200 data stationary."
-[1] "1  difference is needed to make the austourists data stationary."</code></pre>
+<pre><code>[1] "1  difference is needed to make the austourists data stationary."</code></pre>
 </div>
 </div>
 <p><br>Forecast has functions like autoplot(), autolayer(), ggLagplot(), ggHistogram(), ggAcf(), and ggPacf(), which take package models and use ggplot to create appropriate plots. This simplifies the plotting process while allowing you to add to plots in the same way one would with any ggplot. Below I added a title, theme, and color to the line.</p>
@@ -291,20 +287,17 @@ Frequency = 1
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Forecasts from Holt's method"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Air passengers in Australia (millions)"</span>) <span class="sc">+</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Forecast"</span>)) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(austourists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>         Qtr1     Qtr2     Qtr3     Qtr4
-2014                   54.76076 59.83447
-2015 73.25703 47.69662 61.09777 66.05576</code></pre>
-</div>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br>With the Forecast package, it’s easy to check residuals and accuracy.</p>
+<p><br>The checkresiduals function displays several plots and the results of the Ljung-Box test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkresiduals</span>(fc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkresiduals</span>(fc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Ljung-Box test
@@ -314,7 +307,10 @@ Q* = 88.192, df = 4, p-value &lt; 2.2e-16
 
 Model df: 4.   Total lags used: 8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(fc_acc <span class="ot">&lt;-</span> <span class="fu">accuracy</span>(fc, austourists))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br>The accuracy method can take the entire data set and compare the portion set aside for testing to a forecast.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(fc_acc <span class="ot">&lt;-</span> <span class="fu">accuracy</span>(fc, austourists))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     ME     RMSE      MAE        MPE     MAPE     MASE
 Training set  0.9211998 6.571903 5.097607 -0.6464137 14.95336 1.778292
@@ -322,9 +318,6 @@ Test set     -0.7941557 8.899599 7.198491 -4.4212146 14.65768 2.511182
                    ACF1 Theil's U
 Training set -0.2619964        NA
 Test set     -0.3637125 0.5573859</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br>Values in these objects can be easily accessed, most with base R’s $, though the accuracy values are stored as a matrix and must be referenced accordingly. For example, the test MAPE, 14.6576754, can be accessed with object_name[2,5].</p>
